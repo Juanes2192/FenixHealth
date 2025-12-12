@@ -1,0 +1,28 @@
+{
+  "superadmins": [
+    {
+      "id": 1,
+      "username": "gestorfenix",
+      "password": "superadmin123",
+      "role": "superadmin"
+    }
+  ],
+
+  "club_admins": [
+    {
+      "id": 1,
+      "username": "admin@leonesfc.com",
+      "password": "admin12345",
+      "role": "club_admin"
+    }
+  ],
+
+  "coaches": [
+    {
+      "id": 1,
+      "username": "leones@jrodriguez",
+      "password": "1023456789",
+      "role": "coach"
+    }
+  ]
+}
