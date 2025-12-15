@@ -9,7 +9,7 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const allUsers = [...users.merchants, ...users.collaborators];
+    const allUsers = [...users.superadmins, ...users.club_admins, ...users.coaches];
     const user = allUsers.find((u) => u.username === username && u.password === password);
 
     if (user) {
@@ -17,10 +17,12 @@ const LoginPage = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('role', user.role);
 
-      if (user.role === 'merchant') {
-        navigate('/merchant');
-      } else if (user.role === 'collaborator') {
-        navigate('/collaborator');
+      if (user.role === 'superadmin') {
+        navigate('/superadmin');
+      } else if (user.role === 'club_admin') {
+        navigate('/club-admin');
+      } else if (user.role === 'coach') {
+        navigate('/coach');
       }
     } else {
       alert('Invalid credentials');
