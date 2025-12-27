@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import User from './models/User.model.js';
 
 const app = express();
 
@@ -14,8 +15,6 @@ app.get('/api/health', (req, res) => {
     message: 'FenixHealth API running'
   });
 });
-
-import User from './models/User.model.js';
 
 app.get('/api/test-user', async (req, res) => {
   const users = await User.find();
