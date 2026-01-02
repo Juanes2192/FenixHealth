@@ -1,25 +1,19 @@
 import express from 'express';
 import cors from 'cors';
-import User from './models/User.model.js';
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
+
 
 const app = express();
 
-// Middlewares globales
 app.use(cors());
 app.use(express.json());
 
-// Ruta base (health check)
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+
 app.get('/api/health', (req, res) => {
-  res.status(200).json({
-    status: 'OK',
-    message: 'FenixHealth API running'
-  });
+  res.json({ status: 'OK', message: 'FenixHealth API running' });
 });
-
-app.get('/api/test-user', async (req, res) => {
-  const users = await User.find();
-  res.json(users);
-});
-
 
 export default app;
