@@ -12,15 +12,15 @@ export const AuthProvider = ({ children }) => {
 
     if (token) {
       setUser({ token });
-      socket.connect(); // 🔥 socket solo si hay sesión
+      socket.connect();
     }
 
     setLoading(false);
   }, []);
 
-  const login = (data) => {
-    localStorage.setItem('token', data.token);
-    setUser(data.user);
+  const login = ({ token, user }) => {
+    localStorage.setItem('token', token);
+    setUser(user);
     socket.connect();
   };
 

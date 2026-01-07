@@ -12,12 +12,12 @@ export default function AppRouter() {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        {/* 🌍 RUTAS PÚBLICAS */}
+        {/* 🌍 PÚBLICAS */}
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* 🔐 RUTAS PRIVADAS */}
+        {/* 🔐 PRIVADAS */}
         <Route
           path="/dashboard"
           element={
