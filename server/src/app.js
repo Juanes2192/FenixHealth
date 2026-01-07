@@ -13,7 +13,12 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'FenixHealth API running' });
+  res.status(200).json({
+    status: 'OK',
+    message: 'FenixHealth API running'
+  });
 });
+
+app.set('io', null);
 
 export default app;

@@ -22,6 +22,12 @@ export const login = async (req, res) => {
   try {
     const { user, token } = await loginUser(req.body);
 
+    // Emitir evento global (opcional)
+    req.app.get('io')?.emit('user:login', {
+      userId: user._id,
+      email: user.email
+    });
+
     res.status(200).json({
       token,
       user: {
