@@ -14,14 +14,8 @@ html {
 /* ===== NAVBAR ===== */
 .landing-navbar {
   background-color: #0A2540;
-  padding: 1rem 0;
-  transition: all 0.3s ease;
-}
-
-.navbar-scrolled {
-  background-color: #0A2540;
-  padding: 0.6rem 0;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  padding: 1rem 2.5rem;
+  transition: all 0.4s ease-in-out; /* Smoother transition */
 }
 
 .navbar-brand-custom {
@@ -33,15 +27,39 @@ html {
 .nav-link-custom {
   color: #dce6f1 !important;
   font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.2rem 0;
+  padding-bottom: 0.5rem; /* Space for the line */
 }
 
-.nav-link-custom:hover {
-  color: #ffffff !important;
+/* Underline hover effect */
+.nav-link-custom::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
+.nav-link-custom:hover::after {
+  width: 70%;
+}
+
 
 /* Botón en navbar */
 .landing-navbar .btn-primary-custom {
   background-color: #1E4D7B !important;
+  transition: all 0.3s ease;
+}
+
+.landing-navbar .btn-primary-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(30, 77, 123, 0.3);
 }
 
 /* Branding */
@@ -55,6 +73,7 @@ html {
   font-size: 1.4rem;
   font-weight: 700;
   color: #ffffff;
+  transition: color 0.3s ease;
 }
 
 .brand-full {
@@ -62,12 +81,37 @@ html {
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #b8cbe0;
+  transition: color 0.3s ease;
 }
 
-/* Estado navbar alternativo */
+/* Estado navbar alternativo (scrolled) */
 .navbar-scrolled {
-  background-color: #ffffff;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.85); /* Whiter, more solid glassmorphism */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.6rem 2.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07); /* Softer, deeper shadow */
+}
+
+.navbar-scrolled .nav-link-custom {
+  color: var(--blue-medium) !important;
+}
+
+.navbar-scrolled .nav-link-custom:hover {
+  color: var(--blue-dark) !important;
+}
+
+/* Change underline color for scrolled nav */
+.navbar-scrolled .nav-link-custom::after {
+  background-color: var(--blue-primary);
+}
+
+.navbar-scrolled .brand-acronym {
+  color: var(--blue-dark);
+}
+
+.navbar-scrolled .brand-full {
+  color: var(--blue-medium);
 }
 
 /* ===== HERO ===== */

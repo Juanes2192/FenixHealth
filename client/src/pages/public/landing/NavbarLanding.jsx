@@ -20,7 +20,7 @@ export default function NavbarLanding() {
       fixed="top"
       className={`landing-navbar ${scrolled ? "navbar-scrolled" : ""}`}
     >
-      <Container>
+      <Container fluid>
         <Navbar.Brand className="navbar-brand-custom">
   <div className="brand-wrapper">
     <span className="brand-acronym">AMS</span>
