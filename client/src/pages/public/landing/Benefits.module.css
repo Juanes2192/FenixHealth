@@ -1,0 +1,13 @@
+.section {
+  padding: 5rem 0;
+  background-color: #ffffff;
+}
+
+.box {
+  background-color: var(--blue-light);
+  padding: 1.5rem;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: 500;
+  color: var(--blue-medium);
+}

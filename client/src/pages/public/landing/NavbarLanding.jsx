@@ -1,6 +1,6 @@
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import "./landing.css";
+import styles from "./NavbarLanding.module.css";
 
 export default function NavbarLanding() {
   const [scrolled, setScrolled] = useState(false);
@@ -18,33 +18,37 @@ export default function NavbarLanding() {
     <Navbar
       expand="lg"
       fixed="top"
-      className={`landing-navbar ${scrolled ? "navbar-scrolled" : ""}`}
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}
     >
       <Container fluid>
-        <Navbar.Brand className="navbar-brand-custom">
-  <div className="brand-wrapper">
-    <span className="brand-acronym">AMS</span>
-    <span className="brand-full">Athlete Management Services</span>
-  </div>
-</Navbar.Brand>
+        <Navbar.Brand>
+          <div className={styles.brandWrapper}>
+            <span className={styles.brandAcronym}>AMS</span>
+            <span className={styles.brandFull}>
+              Athlete Management Services
+            </span>
+          </div>
+        </Navbar.Brand>
 
         <Navbar.Toggle />
         <Navbar.Collapse>
+          {/* Bootstrap utilities se quedan como string */}
           <Nav className="ms-auto align-items-lg-center gap-lg-3">
-            <Nav.Link href="#inicio" className="nav-link-custom">
+            <Nav.Link href="#inicio" className={styles.navLink}>
               Inicio
             </Nav.Link>
-            <Nav.Link href="#servicios" className="nav-link-custom">
+            <Nav.Link href="#servicios" className={styles.navLink}>
               Servicios
             </Nav.Link>
-            <Nav.Link href="#beneficios" className="nav-link-custom">
+            <Nav.Link href="#beneficios" className={styles.navLink}>
               Beneficios
             </Nav.Link>
-            <Nav.Link href="#contacto" className="nav-link-custom">
+            <Nav.Link href="#contacto" className={styles.navLink}>
               Contacto
             </Nav.Link>
 
-            <Button className="btn-primary-custom ms-lg-3">
+            {/* Botón: combinamos global + módulo */}
+            <Button className={`btn-primary-custom ms-lg-3`}>
               Ingresar
             </Button>
           </Nav>

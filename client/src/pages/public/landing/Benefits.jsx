@@ -1,5 +1,5 @@
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import "./landing.css";
+import { Container, Row, Col } from "react-bootstrap";
+import styles from "./Benefits.module.css";
 
 export default function Benefits() {
     const benefits = [
@@ -10,17 +10,19 @@ export default function Benefits() {
         "Información segura",
     ];
 
-
     return (
-        <section id="beneficios" className="benefits-section">
+        <section id="beneficios" className={styles.section}>
             <Container>
-                <h2 className="section-title text-center mb-4">
+                <h2 className={`${styles.title} text-center mb-4`}>
                     Diseñado para mejorar decisiones, no solo registrar datos
                 </h2>
+
                 <Row className="g-4">
                     {benefits.map((benefit, index) => (
                         <Col md={4} key={index}>
-                            <div className="benefit-box">{benefit}</div>
+                            <div className={styles.box}>
+                                {benefit}
+                            </div>
                         </Col>
                     ))}
                 </Row>

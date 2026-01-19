@@ -1,0 +1,14 @@
+.section {
+  padding: 4rem 0;
+  background-color: var(--blue-dark);
+}
+
+.title {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.text {
+  color: #dce6f1;
+  margin-bottom: 2rem;
+}

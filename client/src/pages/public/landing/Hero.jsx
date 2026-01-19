@@ -1,29 +1,40 @@
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import "./landing.css";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import styles from "./Hero.module.css";
 
 export default function Hero() {
     return (
-        <section id="inicio" className="hero-section">
+        <section id="inicio" className={styles.hero}>
             <Container>
                 <Row className="align-items-center">
                     <Col md={6} className="mb-4 mb-md-0">
-                        <h1 className="hero-title">
+                        <h1 className={styles.title}>
                             Gestiona, analiza y potencia el rendimiento deportivo
                         </h1>
-                        <p className="hero-subtitle">
-                            Plataforma inteligente para entrenadores, clubes y atletas que buscan control total sobre entrenamientos, eventos, rendimiento y salud.
+
+                        <p className={styles.subtitle}>
+                            Plataforma inteligente para entrenadores, clubes y atletas que
+                            buscan control total sobre entrenamientos, eventos, rendimiento y
+                            salud.
                         </p>
-                        <div className="hero-actions">
+
+                        <div className={styles.actions}>
                             <Button className="btn-primary-custom">
                                 Empieza ahora
                             </Button>
-                            <Button variant="outline-primary" className="btn-outline-custom">
+
+                            <Button
+                                variant="outline-primary"
+                                className="btn-outline-custom"
+                            >
                                 Solicitar demo
                             </Button>
                         </div>
                     </Col>
+
                     <Col md={6} className="text-center">
-                        <div className="hero-mockup">Dashboard Preview</div>
+                        <div className={styles.mockup}>
+                            Dashboard Preview
+                        </div>
                     </Col>
                 </Row>
             </Container>
