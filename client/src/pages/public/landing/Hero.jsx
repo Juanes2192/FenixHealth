@@ -1,43 +1,42 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
+// Hero.jsx
 import styles from "./Hero.module.css";
 
 export default function Hero() {
     return (
         <section id="inicio" className={styles.hero}>
-            <Container>
-                <Row className="align-items-center">
-                    <Col md={6} className="mb-4 mb-md-0">
-                        <h1 className={styles.title}>
-                            Gestiona, analiza y potencia el rendimiento deportivo
-                        </h1>
+            <div className={styles.container}>
+                {/* TEXTO */}
+                <header className={styles.content}>
+                    <h1 className={styles.title}>
+                        Gestiona equipos deportivos de forma simple y organizada
+                    </h1>
 
-                        <p className={styles.subtitle}>
-                            Plataforma inteligente para entrenadores, clubes y atletas que
-                            buscan control total sobre entrenamientos, eventos, rendimiento y
-                            salud.
-                        </p>
+                    <p className={styles.subtitle}>
+                        Organiza entrenamientos, horarios y comunicación del equipo desde
+                        una sola plataforma, con herramientas avanzadas para el seguimiento
+                        del rendimiento deportivo.
+                    </p>
 
-                        <div className={styles.actions}>
-                            <Button className="btn-primary-custom">
-                                Empieza ahora
-                            </Button>
+                    <div className={styles.actions}>
+                        {/* CTA PRINCIPAL */}
+                        <button className={styles.ctaPrimary}>
+                            Solicitar demo
+                        </button>
 
-                            <Button
-                                variant="outline-primary"
-                                className="btn-outline-custom"
-                            >
-                                Solicitar demo
-                            </Button>
-                        </div>
-                    </Col>
+                        {/* CTA SECUNDARIO */}
+                        <button className={styles.ctaSecondary}>
+                            Ingresar a la plataforma
+                        </button>
+                    </div>
+                </header>
 
-                    <Col md={6} className="text-center">
-                        <div className={styles.mockup}>
-                            Dashboard Preview
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
+                {/* VISUAL */}
+                <figure className={styles.visual}>
+                    <div className={styles.mockup}>
+                        Dashboard Preview
+                    </div>
+                </figure>
+            </div>
         </section>
     );
 }
