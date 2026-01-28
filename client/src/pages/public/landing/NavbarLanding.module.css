@@ -32,6 +32,10 @@
   padding-bottom: 0.5rem;
 }
 
+.navLink:hover {
+  color: #dce6f1; /* mantiene el mismo color claro en hover */
+}
+
 .navLink::after {
   content: '';
   position: absolute;
