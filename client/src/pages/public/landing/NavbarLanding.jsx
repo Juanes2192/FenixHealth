@@ -2,16 +2,44 @@ import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import styles from "./NavbarLanding.module.css";
 
+const sections = ["inicio", "servicios", "beneficios", "contacto"];
+
 export default function NavbarLanding() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("inicio");
 
+  /* Scroll visual */
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const isScrolled = window.scrollY > 50;
+      setScrolled(prev => (prev !== isScrolled ? isScrolled : prev));
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  /* Section observer */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -32,23 +60,20 @@ export default function NavbarLanding() {
 
         <Navbar.Toggle />
         <Navbar.Collapse>
-          {/* Bootstrap utilities se quedan como string */}
           <Nav className="ms-auto align-items-lg-center gap-lg-3">
-            <Nav.Link href="#inicio" className={styles.navLink}>
-              Inicio
-            </Nav.Link>
-            <Nav.Link href="#servicios" className={styles.navLink}>
-              Servicios
-            </Nav.Link>
-            <Nav.Link href="#beneficios" className={styles.navLink}>
-              Beneficios
-            </Nav.Link>
-            <Nav.Link href="#contacto" className={styles.navLink}>
-              Contacto
-            </Nav.Link>
+            {sections.map(section => (
+              <Nav.Link
+                key={section}
+                href={`#${section}`}
+                className={`${styles.navLink} ${
+                  activeSection === section ? styles.active : ""
+                }`}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </Nav.Link>
+            ))}
 
-            {/* Botón: combinamos global + módulo */}
-            <Button className={`btn-primary-custom ms-lg-3`}>
+            <Button className="btn-primary-custom ms-lg-3">
               Ingresar
             </Button>
           </Nav>

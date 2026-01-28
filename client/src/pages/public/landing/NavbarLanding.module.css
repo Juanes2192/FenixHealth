@@ -1,9 +1,17 @@
-
 .navbar {
-  background-color: #0A2540;
+  background-color: #0a2540;
   padding: 1rem 2.5rem;
-  transition: all 0.4s ease-in-out;
+
+  /* SOLO lo que se anima */
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    backdrop-filter 0.3s ease;
+
+  will-change: background-color, box-shadow;
 }
+
+/* ---------- BRAND ---------- */
 
 .brandWrapper {
   display: flex;
@@ -15,7 +23,7 @@
   font-size: 1.4rem;
   font-weight: 700;
   color: #ffffff;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
 
 .brandFull {
@@ -23,46 +31,53 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #b8cbe0;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
+
+/* ---------- LINKS ---------- */
 
 .navLink {
-  font-weight: 500;
   position: relative;
+  font-weight: 500;
   padding-bottom: 0.5rem;
-}
-
-/* Forzamos el color en todos los estados para sobreescribir los estilos de la librería */
-.navLink, .navLink:hover, .navLink:focus, .navLink:active {
+  text-decoration: none !important;
   color: #dce6f1 !important;
+
+  transition: color 0.25s ease;
 }
 
 .navLink::after {
-  content: '';
+  content: "";
   position: absolute;
+  left: 50%;
+  bottom: 0;
   width: 0%;
   height: 2px;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: #ffffff;
-  transition: width 0.3s ease;
+
+  transform: translateX(-50%);
+  transition: width 0.25s ease;
 }
 
-.navLink:hover::after, .navLink:focus::after, .navLink:active::after {
+.navLink:hover::after,
+.navLink:focus-visible::after {
   width: 70%;
 }
 
-/* Estado scrolled */
+/* ---------- SCROLLED STATE ---------- */
+
 .scrolled {
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  padding: 0.6rem 2.5rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.4);
 }
 
-/* Forzamos el color en todos los estados para la versión scrolled */
-.scrolled .navLink, .scrolled .navLink:hover, .scrolled .navLink:focus, .scrolled .navLink:active {
+
+/* Colores en estado scrolled */
+.scrolled .navLink {
   color: var(--blue-medium) !important;
 }
 
@@ -76,4 +91,16 @@
 
 .scrolled .brandFull {
   color: var(--blue-medium);
+}
+
+.scrolled .brandAcronym,
+.scrolled .brandFull,
+.scrolled .navLink {
+  transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- ACTIVE LINK (SECTION VISIBLE) ---------- */
+
+.active::after {
+  width: 70%;
 }
