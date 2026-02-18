@@ -1,26 +1,25 @@
-// Hero.jsx
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
     <section id="inicio" className={styles.hero}>
       <div className={styles.container}>
-        {/* LADO IZQUIERDO – TEXTO */}
+        
+        {/* TEXTO */}
         <header className={styles.content}>
           <h1 className={styles.title}>
-            Gestiona equipos deportivos <br />
-            <span>con control, claridad y rendimiento</span>
+            Gestión de equipos deportivos <br />
+            <span>con control, claridad y rendimiento.</span>
           </h1>
 
           <p className={styles.subtitle}>
-            Centraliza entrenamientos, horarios y comunicación del equipo
-            en una sola plataforma diseñada para entrenadores, clubes
-            y organizaciones deportivas.
+            Centraliza entrenamientos, asistencia, comunicación y planificación 
+            en una sola plataforma diseñada para entrenadores y organizaciones deportivas.
           </p>
 
           <div className={styles.actions}>
             <button className={styles.ctaPrimary}>
-              Solicitar demo
+              Solicitar demostración
             </button>
 
             <button className={styles.ctaSecondary}>
@@ -29,12 +28,15 @@ export default function Hero() {
           </div>
         </header>
 
-        {/* LADO DERECHO – PREVIEW */}
+        {/* PREVIEW REAL */}
         <figure className={styles.visual}>
           <div className={styles.mockup}>
-            <span>Dashboard Preview</span>
+            <span className={styles.previewText}>
+              Vista previa de la plataforma
+            </span>
           </div>
         </figure>
+
       </div>
     </section>
   );

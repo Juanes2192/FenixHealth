@@ -3,17 +3,23 @@
 ================================ */
 
 .hero {
-  min-height: 90vh;
+  min-height: 95vh;
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 
   background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(30, 136, 255, 0.25),
+      transparent 50%
+    ),
     linear-gradient(
-      90deg,
-      var(--blue-dark) 0%,
-      var(--blue-dark) 45%,
-      #f5f9ff 70%,
-      #ffffff 100%
+      120deg,
+      #0f2a44 0%,
+      #143352 50%,
+      #1c4d78 85%
     );
 }
 
@@ -23,38 +29,42 @@
 
 .container {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1600px;
   margin-inline: auto;
-  padding-inline: 2rem;
+  padding-inline: 3rem;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(480px, 600px) 1fr;
   align-items: center;
-  gap: 4rem;
+  gap: clamp(3rem, 6vw, 7rem);
 }
+
 
 /* ==============================
    CONTENT (TEXT)
 ================================ */
 
 .content {
-  max-width: 560px;
+  max-width: 600px;
 }
 
 .title {
   color: #ffffff;
   font-weight: 700;
-  font-size: clamp(2.4rem, 4vw, 3rem);
-  line-height: 1.15;
+  font-size: clamp(2.6rem, 4vw, 3.2rem);
+  line-height: 1.1;
 }
 
 .title span {
-  color: #8ec2ff;
+  background: linear-gradient(135deg, #8ec2ff, #3aa0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
   color: rgba(255, 255, 255, 0.85);
-  margin-top: 1.3rem;
+  margin-top: 1.6rem;
   font-size: 1.1rem;
   line-height: 1.7;
 }
@@ -70,55 +80,41 @@
   flex-wrap: wrap;
 }
 
-/* CTA PRINCIPAL */
-
 .ctaPrimary {
-  background: linear-gradient(
-    135deg,
-    #1e88ff,
-    #3aa0ff
-  );
+  background: linear-gradient(135deg, #1e88ff, #3aa0ff);
   color: #ffffff;
   border: none;
-  padding: 1rem 2.6rem;
+  padding: 1.1rem 2.8rem;
   border-radius: 14px;
   font-weight: 600;
   cursor: pointer;
 
-  box-shadow:
-    0 14px 35px rgba(30, 136, 255, 0.55);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  box-shadow: 0 18px 40px rgba(30, 136, 255, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .ctaPrimary:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 20px 50px rgba(30, 136, 255, 0.7);
+  transform: translateY(-4px);
+  box-shadow: 0 25px 60px rgba(30, 136, 255, 0.7);
 }
-
-/* CTA SECUNDARIO */
 
 .ctaSecondary {
   background-color: transparent;
   color: #ffffff;
   border: 1.5px solid rgba(255, 255, 255, 0.6);
-  padding: 1rem 2.4rem;
+  padding: 1rem 2.6rem;
   border-radius: 12px;
   font-weight: 500;
   cursor: pointer;
 
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease;
+  transition: background-color 0.25s ease,
+              color 0.25s ease,
+              border-color 0.25s ease;
 }
 
 .ctaSecondary:hover {
   background-color: #ffffff;
-  color: var(--blue-dark);
+  color: #0f2a44;
   border-color: #ffffff;
 }
 
@@ -129,31 +125,42 @@
 .visual {
   display: flex;
   justify-content: center;
+  align-items: center;
+  transform: translateX(30px); /* efecto dinámico */
 }
 
 .mockup {
-  width: 100%;
-  max-width: 520px;
-  height: 340px;
+  width: 110%;
+  max-width: 720px;
+  height: 460px;
+
+  border-radius: 28px;
 
   background: linear-gradient(
-    135deg,
-    #f4f8ff,
-    #e9f1ff
+    160deg,
+    #f8fbff,
+    #e8f1ff
   );
 
-  border-radius: 22px;
-  border: 1px solid rgba(30, 136, 255, 0.2);
+  border: 1px solid rgba(30, 136, 255, 0.15);
 
   box-shadow:
-    0 30px 70px rgba(0, 0, 0, 0.15);
+    0 40px 90px rgba(0, 0, 0, 0.22);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  color: var(--blue-dark);
-  font-weight: 600;
+  position: relative;
+}
+
+/* Texto placeholder */
+
+.previewText {
+  color: rgba(15, 42, 68, 0.6);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
 }
 
 /* ==============================
@@ -161,13 +168,13 @@
 ================================ */
 
 @media (max-width: 900px) {
+
   .hero {
     background:
       linear-gradient(
         180deg,
-        var(--blue-dark) 0%,
-        var(--blue-dark) 55%,
-        #ffffff 100%
+        #0f2a44 0%,
+        #143352 100%
       );
   }
 
@@ -182,5 +189,11 @@
 
   .visual {
     margin-top: 3rem;
+    transform: none;
+  }
+
+  .mockup {
+    width: 100%;
+    height: 320px;
   }
 }
