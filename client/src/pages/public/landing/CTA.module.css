@@ -1,14 +1,100 @@
-.section {
-  padding: 4rem 0;
-  background-color: var(--blue-dark);
+.ctaSection {
+  background: #0f2f4f;
+  padding: 80px 20px;
+  color: white;
+}
+
+.wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .title {
-  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 12px;
+  opacity: 0.9;
+}
+
+.form {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Inputs */
+
+.input {
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+}
+
+.textarea {
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  min-height: 100px;
+  resize: none;
+}
+
+/* Radio */
+
+.radioGroup {
+  text-align: left;
+}
+
+.label {
   font-weight: 600;
 }
 
-.text {
-  color: #dce6f1;
-  margin-bottom: 2rem;
+.radioOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Policy */
+
+.policy {
+  font-size: 12px;
+  text-align: left;
+  opacity: 0.9;
+}
+
+/* Button */
+
+.button {
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(
+    90deg,
+    #1f5fa5,
+    #2c7be5
+  );
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Response */
+
+.response {
+  margin-top: 10px;
+  font-size: 14px;
 }

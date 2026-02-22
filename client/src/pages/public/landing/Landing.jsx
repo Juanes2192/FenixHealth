@@ -8,6 +8,7 @@ const Hero = lazy(() => import("./Hero"));
 const Features = lazy(() => import("./Features"));
 const Benefits = lazy(() => import("./Benefits"));
 const CTA = lazy(() => import("./CTA"));
+const Footer = lazy(() => import("./Footer"));
 
 export default function Landing() {
   return (
@@ -31,6 +32,10 @@ export default function Landing() {
 
       <Suspense fallback={null}>
         <CTA />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <Footer />
       </Suspense>
     </>
   );

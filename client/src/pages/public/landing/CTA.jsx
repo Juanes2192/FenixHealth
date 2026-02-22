@@ -1,22 +1,188 @@
-import { Container, Button } from "react-bootstrap";
+import { useState } from "react";
+import axios from "../../../api/axios";
 import styles from "./CTA.module.css";
 
-export default function CTA() {
-    return (
-        <section id="contacto" className={styles.section}>
-            <Container className="text-center">
-                <h2 className={styles.title}>
-                    Lleva tu gestión deportiva al siguiente nivel
-                </h2>
+const CTA = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    applicantType: "individual",
+    organizationName: "",
+    message: "",
+    acceptPolicy: false,
+  });
 
-                <p className={styles.text}>
-                    Empieza hoy y transforma la forma en que entrenas y analizas el deporte.
-                </p>
+  const [loading, setLoading] = useState(false);
+  const [responseMessage, setResponseMessage] = useState(null);
 
-                <Button className="btn-primary-custom">
-                    Comenzar ahora
-                </Button>
-            </Container>
-        </section>
-    );
-}
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!form.acceptPolicy) {
+      return setResponseMessage(
+        "Debes aceptar la política de tratamiento de datos."
+      );
+    }
+
+    if (
+      form.applicantType === "organization" &&
+      !form.organizationName
+    ) {
+      return setResponseMessage(
+        "Debes ingresar el nombre de la organización."
+      );
+    }
+
+    try {
+      setLoading(true);
+
+      const { data } = await axios.post("/leads", form);
+
+      setResponseMessage(data.message);
+
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        applicantType: "individual",
+        organizationName: "",
+        message: "",
+        acceptPolicy: false,
+      });
+    } catch (error) {
+      setResponseMessage("Error al enviar la solicitud.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section className={styles.ctaSection}>
+      <div className={styles.wrapper}>
+        <h2 className={styles.title}>Solicita una demostración</h2>
+
+        <p className={styles.subtitle}>
+          Déjanos tus datos y te contactaremos para mostrarte cómo
+          AMS puede transformar tu gestión deportiva.
+        </p>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <input
+            className={styles.input}
+            type="text"
+            name="name"
+            placeholder="Nombre completo"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            className={styles.input}
+            type="email"
+            name="email"
+            placeholder="Correo electrónico"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            className={styles.input}
+            type="text"
+            name="phone"
+            placeholder="Teléfono"
+            value={form.phone}
+            onChange={handleChange}
+          />
+
+          {/* SOLICITANTE */}
+          <div className={styles.radioGroup}>
+            <span className={styles.label}>Solicitante:</span>
+
+            <div className={styles.radioOptions}>
+              <label>
+                <input
+                  type="radio"
+                  name="applicantType"
+                  value="individual"
+                  checked={form.applicantType === "individual"}
+                  onChange={handleChange}
+                />
+                Persona natural / Entrenador
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="applicantType"
+                  value="organization"
+                  checked={form.applicantType === "organization"}
+                  onChange={handleChange}
+                />
+                Empresa / Club / Organización
+              </label>
+            </div>
+          </div>
+
+          {form.applicantType === "organization" && (
+            <input
+              className={styles.input}
+              type="text"
+              name="organizationName"
+              placeholder="Nombre de la empresa / club"
+              value={form.organizationName}
+              onChange={handleChange}
+              required
+            />
+          )}
+
+          <textarea
+            className={styles.textarea}
+            name="message"
+            placeholder="Cuéntanos sobre tu equipo o necesidades"
+            value={form.message}
+            onChange={handleChange}
+          />
+
+          <div className={styles.policy}>
+            <label>
+              <input
+                type="checkbox"
+                name="acceptPolicy"
+                checked={form.acceptPolicy}
+                onChange={handleChange}
+              />
+              Autorizo el tratamiento de mis datos personales conforme a la
+              política de privacidad de AMS.
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className={styles.button}
+          >
+            {loading ? "Enviando..." : "Solicitar demostración"}
+          </button>
+
+          {responseMessage && (
+            <p className={styles.response}>{responseMessage}</p>
+          )}
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default CTA;

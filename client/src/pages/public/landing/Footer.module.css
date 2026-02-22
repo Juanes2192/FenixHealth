@@ -1,0 +1,139 @@
+.footer {
+  background: #0b2238;
+  color: white;
+  padding: 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+/* ===================== */
+/* IZQUIERDA */
+/* ===================== */
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ===================== */
+/* CENTRO */
+/* ===================== */
+
+.center {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* ===================== */
+/* DERECHA */
+/* ===================== */
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 22px;
+}
+
+.follow {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ===================== */
+/* REDES */
+/* ===================== */
+
+.social {
+  display: flex;
+  gap: 18px;
+}
+
+.social a {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 18px;
+
+  transition: all 0.3s ease;
+}
+
+/* Instagram */
+.social a:nth-child(1):hover {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285AEB 90%
+  );
+}
+
+/* Facebook */
+.social a:nth-child(2):hover {
+  background: #1877f2;
+}
+
+/* X */
+.social a:nth-child(3):hover {
+  background: #000000;
+}
+
+/* WhatsApp */
+.social a:nth-child(4):hover {
+  background: #25D366;
+}
+
+/* Hover general */
+.social a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .left,
+  .right {
+    justify-content: center;
+  }
+
+  .right {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
