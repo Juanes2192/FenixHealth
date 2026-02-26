@@ -1,32 +1,68 @@
-import { Container, Row, Col } from "react-bootstrap";
+import {
+  FaChartLine,
+  FaBrain,
+  FaClock,
+  FaUsers,
+  FaShieldAlt,
+} from "react-icons/fa";
 import styles from "./Benefits.module.css";
 
 export default function Benefits() {
-    const benefits = [
-        "Mejor rendimiento deportivo",
-        "Decisiones basadas en datos",
-        "Ahorro de tiempo en gestión",
-        "Control claro del equipo",
-        "Información segura",
-    ];
+  const benefits = [
+    {
+      icon: <FaChartLine />,
+      title: "Mejor rendimiento deportivo",
+      text: "Optimiza el desempeño de tus atletas con información precisa y estructurada.",
+    },
+    {
+      icon: <FaBrain />,
+      title: "Decisiones basadas en datos",
+      text: "Analiza métricas reales para tomar decisiones estratégicas inteligentes.",
+    },
+    {
+      icon: <FaClock />,
+      title: "Ahorro de tiempo en gestión",
+      text: "Automatiza procesos y reduce tareas administrativas repetitivas.",
+    },
+    {
+      icon: <FaUsers />,
+      title: "Control claro del equipo",
+      text: "Visualiza el estado completo de cada jugador y del equipo en general.",
+    },
+    {
+      icon: <FaShieldAlt />,
+      title: "Información segura",
+      text: "Protección y centralización de datos en un entorno confiable.",
+    },
+  ];
 
-    return (
-        <section id="beneficios" className={styles.section}>
-            <Container>
-                <h2 className={`${styles.title} text-center mb-4`}>
-                    Diseñado para mejorar decisiones, no solo registrar datos
-                </h2>
+  return (
+    <section id="beneficios" className={styles.section}>
+      <div className="container">
+        <div className={styles.header}>
+          <h2>Resultados reales para entrenadores y equipos profesionales</h2>
+        </div>
 
-                <Row className="g-4">
-                    {benefits.map((benefit, index) => (
-                        <Col md={4} key={index}>
-                            <div className={styles.box}>
-                                {benefit}
-                            </div>
-                        </Col>
-                    ))}
-                </Row>
-            </Container>
-        </section>
-    );
+        <div className={styles.timeline}>
+          {benefits.map((item, index) => (
+            <div
+              key={index}
+              className={`${styles.item} ${
+                index % 2 === 0 ? styles.top : styles.bottom
+              }`}
+            >
+              <div className={styles.content}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+
+              <div className={styles.node}>
+                {item.icon}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,21 +1,85 @@
 .section {
-  padding: 5rem 0;
-  background-color: var(--blue-light);
+  padding: 6rem 0;
+  background: linear-gradient(
+    180deg,
+    var(--blue-light) 0%,
+    #ffffff 100%
+  );
 }
 
 .title {
+  text-align: center;
   color: var(--blue-dark);
-  font-weight: 600;
-  margin-bottom: 3rem;
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin-bottom: 4rem;
 }
 
+/* =========================
+   GRID LAYOUT
+========================= */
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* =========================
+   CARD
+========================= */
+
 .card {
-  border: none;
-  border-radius: 16px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   ICON
+========================= */
+
+.iconWrapper {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1.5rem auto;
+  border-radius: 50%;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--blue-dark);
+  transition: all 0.3s ease;
+}
+
+.card:hover .iconWrapper {
+  background: var(--blue-dark);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--blue-dark);
+  margin-bottom: 1rem;
+}
+
+.cardText {
+  font-size: 0.95rem;
+  color: #6c757d;
+  line-height: 1.6;
 }

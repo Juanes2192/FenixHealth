@@ -19,6 +19,8 @@ const CTA = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
+    setResponseMessage(null);
+
     setForm((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -60,14 +62,17 @@ const CTA = () => {
         acceptPolicy: false,
       });
     } catch (error) {
-      setResponseMessage("Error al enviar la solicitud.");
+      setResponseMessage(
+        error.response?.data?.message ||
+        "Error al enviar la solicitud."
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className={styles.ctaSection}>
+    <section id="contacto" className={styles.ctaSection}>
       <div className={styles.wrapper}>
         <h2 className={styles.title}>Solicita una demostración</h2>
 
@@ -87,24 +92,27 @@ const CTA = () => {
             required
           />
 
-          <input
-            className={styles.input}
-            type="email"
-            name="email"
-            placeholder="Correo electrónico"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+          {/* EMAIL + PHONE EN MISMA LÍNEA */}
+          <div className={styles.row}>
+            <input
+              className={styles.input}
+              type="email"
+              name="email"
+              placeholder="Correo electrónico"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
 
-          <input
-            className={styles.input}
-            type="text"
-            name="phone"
-            placeholder="Teléfono"
-            value={form.phone}
-            onChange={handleChange}
-          />
+            <input
+              className={styles.input}
+              type="tel"
+              name="phone"
+              placeholder="Teléfono"
+              value={form.phone}
+              onChange={handleChange}
+            />
+          </div>
 
           {/* SOLICITANTE */}
           <div className={styles.radioGroup}>
