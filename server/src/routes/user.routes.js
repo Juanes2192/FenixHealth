@@ -2,21 +2,41 @@ import { Router } from 'express';
 import { protect } from '../middlewares/auth.middleware.js';
 import { authorize } from '../middlewares/role.middleware.js';
 
+import {
+  createAdmin,
+  createCoach,
+  createAthlete
+} from '../controllers/user.controller.js';
+
 const router = Router();
 
-// Ruta privada (cualquier usuario autenticado)
+/* PERFIL */
 router.get('/profile', protect, (req, res) => {
-  res.json({
-    message: 'Access granted',
-    user: req.user
-  });
+  res.json(req.user);
 });
 
-// Ruta solo admin / superAdmin
-router.get('/admin', protect, authorize('admin', 'superAdmin'), (req, res) => {
-  res.json({
-    message: 'Admin access granted'
-  });
-});
+/* SUPERADMIN crea ADMIN */
+router.post(
+  '/admin',
+  protect,
+  authorize('superadmin'),
+  createAdmin
+);
+
+/* ADMIN crea COACH */
+router.post(
+  '/coach',
+  protect,
+  authorize('admin'),
+  createCoach
+);
+
+/* COACH crea ATHLETE */
+router.post(
+  '/athlete',
+  protect,
+  authorize('coach'),
+  createAthlete
+);
 
 export default router;
